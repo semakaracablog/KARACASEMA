@@ -1,26 +1,20 @@
-var slideIndex = 1;
-  showDivs(slideIndex);
-  
-  function plusDivs(n) {
-    showDivs(slideIndex += n);
-  }
-  
-  function currentDiv(n) {
-    showDivs(slideIndex = n);
-  }
-  
-  function showDivs(n) {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("demo");
-    if (n > x.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = x.length}
-    for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";  
-    }
-    for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" w3-white", "");
-    }
-    x[slideIndex-1].style.display = "block";  
-    dots[slideIndex-1].className += " w3-white";
-  }
+const slides = document.querySelector(".slides");
+        const indicatorsContainer = document.querySelector(".indicators");
+        const totalSlides = document.querySelectorAll(".slide").length;
+        let currentIndex = 0;
+
+        for (let i = 0; i < totalSlides; i++) {
+            const indicator = document.createElement("span");
+            indicator.classList.add("indicator");
+            if (i === 0) indicator.classList.add("active");
+            indicator.addEventListener("click", () => moveToSlide(i));
+            indicatorsContainer.appendChild(indicator);
+        }
+
+        function moveToSlide(index) {
+            currentIndex = index;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            document.querySelectorAll(".indicator").forEach((ind, i) => {
+                ind.classList.toggle("active", i === index);
+            });
+        }

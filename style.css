@@ -12,9 +12,19 @@ body {
     
     }
 
-    .mySlides {display:none}
-.w3-left, .w3-right, .w3-badge {cursor:pointer; height: 18px;}
-.w3-badge {height:11px;width:11px;padding:0}
+    .slider-container { position: relative; max-width: 800px; margin: auto; overflow: hidden; }
+
+        .slides { display: flex; transition: transform 0.5s ease-in-out; }
+
+        .slide { min-width: 100%; }
+
+        .slide img { width: 100%; display: block; }
+
+        .indicators { text-align: center; position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); }
+
+        .indicator { width: 10px; height: 10px; margin: 0 5px; background: gray; border-radius: 50%; display: inline-block; cursor: pointer; }
+        
+        .active { background: white; }
     
     
     li a {
